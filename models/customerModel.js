@@ -1,12 +1,12 @@
 /**
  * 
- * Class For Customer Model Using The 
+ * Class For Customer Model Using The Sequelize Package
  * 
  */
 
 const { DataTypes, Model } = require("sequelize");
 const sequelize = require("../config/db");
-
+const moment = require("moment");
 
 class Customer extends Model { }
 
@@ -41,11 +41,16 @@ Customer.init(
         },
         customerTaxID: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         userID: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: "User",
+                key: "userID"
+            }
         }
     },
     {

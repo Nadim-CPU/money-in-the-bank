@@ -27,7 +27,11 @@ Admin.init(
         },
         userID: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: "User",
+                key: "userID"
+            }
         }
     },
     {
@@ -37,3 +41,5 @@ Admin.init(
         timestamps: false
     }
 );
+
+module.exports = Admin;

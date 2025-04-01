@@ -20,6 +20,15 @@ User.init(
             autoIncrement: true,
             unique: true
         },
+        userUserName: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true
+        },
+        userPassword: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         userFirstName: {
             type: DataTypes.STRING,
             allowNull: false
@@ -51,3 +60,5 @@ User.init(
         timestamps: false
     }
 );
+
+module.exports = User;
