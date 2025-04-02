@@ -53,3 +53,6 @@ LoanPayment.init(
         timestamps: false
     }
 );
+
+
+module.exports = LoanPayment

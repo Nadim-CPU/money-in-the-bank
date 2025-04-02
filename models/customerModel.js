@@ -60,3 +60,6 @@ Customer.init(
         timestamps: false
     }
 );
+
+
+module.exports = Customer;

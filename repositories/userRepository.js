@@ -33,7 +33,7 @@ class UserRepository {
      * @returns 
      */
     static async changeUserPassword(user) {
-        const [changedUser] = User.update({
+        const [changedUser] = await User.update({
             userPassword: user.password
         }, {
             where: { userID: user.id }
@@ -47,7 +47,7 @@ class UserRepository {
      * @returns updatedUser 
      */
     static async updateUserPhone(user) {
-        const [updatedUser] = User.update({
+        const [updatedUser] = await User.update({
             userPhoneNbr: user.phoneNbr
         }, {
             where: { userID: user.id }
@@ -62,7 +62,7 @@ class UserRepository {
      * @returns updatedUser
      */
     static async updateUserAddress(user) {
-        const [updatedUser] = User.update({
+        const [updatedUser] = await User.update({
             userAddress: userAddress
         }, {
             where: { userID: user.id }
@@ -106,3 +106,6 @@ class UserRepository {
         );
     }
 }
+
+
+module.exports = UserRepository;

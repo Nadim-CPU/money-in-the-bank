@@ -52,3 +52,6 @@ Transaction.init(
         timestamps: false
     }
 );
+
+
+module.exports = Transaction;

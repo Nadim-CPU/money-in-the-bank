@@ -64,3 +64,6 @@ Loan.init(
         timestamps: false
     }
 );
+
+
+module.exports = Loan;
