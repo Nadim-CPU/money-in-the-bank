@@ -1,5 +1,6 @@
 
 const Customer = require("../models/customerModel");
+const LoanRepository = require("./loanRepository");
 
 
 /* ----------------------------------------------------------------------------------------------
@@ -21,6 +22,21 @@ class CustomerRepository {
         });
 
         return createdCustomer;
+    }
+
+    static async updateCustomerBalance(id, amount) {
+
+        const customer = await this.getCustomer(id);
+
+        customer.balance += amount; // ADDS/DEDUCTS THE BALANCE, EVEN THOUGH IT SEEMS TO BE ADDING TO IT
+
+        const [updatedCustomer] = await Customer.update({
+            customerBalance: customer.balance
+        }, {
+            where: {customerID: id}
+        });
+
+        return updatedCustomer;
     }
 
     static async closeCustomer(customer) {
@@ -60,4 +76,9 @@ class CustomerRepository {
             where: { customerID: id}
         });
     }
+
+
 }
+
+
+module.exports = LoanRepository

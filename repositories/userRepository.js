@@ -46,7 +46,7 @@ class UserRepository {
      * @param {User} user 
      * @returns updatedUser 
      */
-    static async updateUserPhone(user) {
+    static async changeUserPhone(user) {
         const [updatedUser] = await User.update({
             userPhoneNbr: user.phoneNbr
         }, {
@@ -61,7 +61,7 @@ class UserRepository {
      * @param {User} user 
      * @returns updatedUser
      */
-    static async updateUserAddress(user) {
+    static async changeUserAddress(user) {
         const [updatedUser] = await User.update({
             userAddress: userAddress
         }, {

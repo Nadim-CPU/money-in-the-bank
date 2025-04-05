@@ -42,7 +42,7 @@ Customer.init(
         customerTaxID: {
             type: DataTypes.STRING,
             allowNull: false,
-            unique: true
+            unique: true    // A Unqiue Identifier For Every Customer
         },
         userID: {
             type: DataTypes.INTEGER,
@@ -50,7 +50,9 @@ Customer.init(
             references: {
                 model: "User",
                 key: "userID"
-            }
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE'
         }
     },
     {

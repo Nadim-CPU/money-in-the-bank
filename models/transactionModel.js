@@ -42,7 +42,9 @@ Transaction.init(
             references: {
                 model: "Customer",
                 key: "customerID"
-            }
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE'
         }
     },
     {

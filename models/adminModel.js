@@ -31,7 +31,9 @@ Admin.init(
             references: {
                 model: "User",
                 key: "userID"
-            }
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE'
         }
     },
     {

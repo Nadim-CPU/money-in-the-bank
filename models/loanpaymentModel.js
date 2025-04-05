@@ -35,7 +35,9 @@ LoanPayment.init(
             references: {
                 model: "Loan",
                 key: "loanID"
-            }
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE'
         },
         transactionID: {
             type: DataTypes.INTEGER,
@@ -44,7 +46,9 @@ LoanPayment.init(
                 model: "Transaction",
                 key: "transactionID"
             }
-        }
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
     },
     {
         sequelize,
