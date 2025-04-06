@@ -43,7 +43,7 @@ class LoanPaymentRepository {
 
     }
 
-    static async getAllLoanPayments(loanId) {
+    static async getAllLoanPaymentsOfLoan(loanId) {
         
         return await LoanPayment.findAll({ where: {loanID: loanId}});
 

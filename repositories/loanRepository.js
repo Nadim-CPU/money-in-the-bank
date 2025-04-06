@@ -47,8 +47,8 @@ class LoanRepository {
         return await Loan.findAll({where: {loanID: id}});
     }
 
-    static async getLoans() {
-        return Loan.findAll();
+    static async getLoansOfCustomer(customerId) {
+        return Loan.findAll({ where: {customerID: customerId}});
     }
 }
 

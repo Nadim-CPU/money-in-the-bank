@@ -1,5 +1,5 @@
 
-const User = require("../models/userModel");
+
 const UserRepository = require("../repositories/userRepository")
 
 /* ----------------------------------------------------------------------------------------------
