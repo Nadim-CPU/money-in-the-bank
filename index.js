@@ -19,7 +19,7 @@ const app = express();
 require(".env").config();
 
 app.use(cors());
-
+app.use(express.json());
 app.use(bodyParser.json());
 
 const PORT = process.env.PORT;

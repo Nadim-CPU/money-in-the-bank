@@ -63,7 +63,7 @@ class UserRepository {
      */
     static async changeUserAddress(user) {
         const [updatedUser] = await User.update({
-            userAddress: userAddress
+            userAddress: user.address
         }, {
             where: { userID: user.id }
         }

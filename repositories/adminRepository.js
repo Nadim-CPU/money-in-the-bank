@@ -32,8 +32,7 @@ class AdminRepository {
     static async updateAdmin(admin) {
 
         const [updatedAdmin] = await Admin.update({
-            adminNumber: admin.number,
-            userID: admin.userID
+            adminNumber: admin.number
         }, {
             where: { adminID: admin.id }
         }
