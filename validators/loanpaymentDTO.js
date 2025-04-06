@@ -1,0 +1,51 @@
+const { body, param, validationResult } = require('express-validator');
+
+
+validateLoanPayment = [
+
+    body('paid')
+        .isDecimal()
+        .withMessage('Paid Amount must be DECIMAL.')
+        .notEmpty()
+        .withMessage('Paid Amount cannot be EMPTY.'),
+    body('datePaid')
+        .isDate()
+        .withMessage('Date Paid must be DATE.')
+        .notEmpty()
+        .withMessage('Date Paid cannot be EMPTY.'),
+    body('loanID')
+        .isInt()
+        .withMessage('Loan ID must be INT.')
+        .notEmpty()
+        .withMessage('Loan ID cannot be EMPTY.'),
+    body('transactionID')
+        .isInt()
+        .withMessage('Loan ID must be INT.')
+        .notEmpty()
+        .withMessage('Loan ID cannot EMPTY.'),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({errors: errors.array()});
+        }
+        next();
+    }
+];
+
+
+const validationLoanPaymentID = [
+    param('id').isInt().withMessage('ID must be an integer'),
+    (req, res, next) =>{
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({errors: errors.array()})
+        }
+
+        next();
+    }
+];
+
+module.exports = {
+    validateLoan,
+    validationLoanPaymentID
+}

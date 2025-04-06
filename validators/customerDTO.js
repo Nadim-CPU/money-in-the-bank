@@ -37,7 +37,7 @@ validateCustomer = [
 ];
 
 const validationCustomerID = [
-    param('customerID').isInt().withMessage('ID must be an integer'),
+    param('id').isInt().withMessage('ID must be an integer'),
     (req, res, next) =>{
         const errors = validationResult(req);
         if(!errors.isEmpty()){
