@@ -15,7 +15,7 @@ class AdminService {
     static async createAdmin(admin) {
 
         try {
-            await AdminRepository.createAdmin(admin);
+           return await AdminRepository.createAdmin(admin);
         } catch (e) {
             throw new Error(e);
         }
@@ -25,7 +25,7 @@ class AdminService {
     static async updateAdmin(admin) {
 
         try {
-            await AdminRepository.updateAdmin(admin);
+            return await AdminRepository.updateAdmin(admin);
         } catch (e) {
             throw new Error(e);
         }
@@ -35,7 +35,7 @@ class AdminService {
     static async getAdmin(id) {
         
         try {
-            await AdminRepository.getAdmin(id);
+            return await AdminRepository.getAdmin(id);
         } catch (e) {
             throw new Error(e);
         }
@@ -45,7 +45,7 @@ class AdminService {
     static async getAdmins() {
 
         try {
-            await AdminRepository.getAdmins();
+            return await AdminRepository.getAdmins();
         } catch (e) {
             throw new Error(e);
         }
@@ -54,7 +54,7 @@ class AdminService {
     static async deleteAdmin(id) {
 
         try {
-            await AdminRepository.deleteAdmin(id);
+            return await AdminRepository.deleteAdmin(id);
         } catch (e) {
             throw new Error(e);
         }

@@ -21,12 +21,28 @@ class CustomerController {
         }
     }
 
-    static async updateCustomerBalance(req, res){
+    static async addToBalance(req, res){
 
         try {
-            const { id, amount } = req.params;
+            const { id } = req.params;
+            const { amount } = req.body;
 
-            const result = await CustomerService.updateCustomerBalance({ id, amount });
+            const result = await CustomerService.addToBalance({ id, amount });
+            res.status(200).json(result);
+
+        } catch (e) {
+            console.error(e.message);
+            res.status(500).json({message: "Internal Server Error", error: e.message});
+        }
+    }
+
+    static async DeductFromBalance(req, res){
+
+        try {
+            const { id } = req.params;
+            const { amount } = req.body;
+
+            const result = await CustomerService.deductFromBalance({ id, amount });
             res.status(200).json(result);
 
         } catch (e) {
@@ -78,6 +94,20 @@ class CustomerController {
         try {
 
             const result = await CustomerService.getCustomers();
+            res.status(200).json(result);
+        } catch (e) {
+            console.error(e.message);
+            res.status(500).json({message: "Internal Server Error", error: e.message});
+        }
+    }
+
+    static async deleteCustomer(req, res) {
+
+        try {
+
+            const { id } = req.params;
+
+            const result = await CustomerService.deleteCustomer(id);
             res.status(200).json(result);
         } catch (e) {
             console.error(e.message);

@@ -13,7 +13,7 @@ class UserService {
     static async createUser(user) {
 
         try {
-            await UserRepository.createUser(user);
+            return await UserRepository.createUser(user);
         } catch(e) {
             throw new Error(e);
         }
@@ -23,7 +23,7 @@ class UserService {
     static async changeUserPassword(user) {
 
         try {
-            await UserRepository.changeUserPassword(user);
+           return await UserRepository.changeUserPassword(user);
         } catch(e) {
             throw new Error(e);
         }
@@ -32,7 +32,7 @@ class UserService {
     static async changeUserPhone(user) {
 
         try {
-            await UserRepository.changeUserPhone(user);
+            return await UserRepository.changeUserPhone(user);
         } catch(e) {
             throw new Error(e);
         }
@@ -41,7 +41,7 @@ class UserService {
     static async changeUserAddress(user) {
 
         try {
-            await UserRepository.changeUserAddress(user);
+            return await UserRepository.changeUserAddress(user);
         } catch(e) {
             throw new Error(e);
         }
@@ -50,7 +50,7 @@ class UserService {
     static async readUser(id) {
         
         try {
-            await UserRepository.readUser(id);
+           return await UserRepository.readUser(id);
         } catch(e) {
             throw new Error(e);
         }
@@ -59,7 +59,7 @@ class UserService {
     static async deleteUser(id) {
 
         try {
-            await UserRepository.deleteUser(id);
+           return await UserRepository.deleteUser(id);
         } catch(e) {
             throw new Error(e);
         }
@@ -68,7 +68,7 @@ class UserService {
     static async authenticate(username, password) {
         
         try {
-            await UserRepository.authenticate(username, password)
+            return await UserRepository.authenticate(username, password)
         } catch(e) {
             throw new Error(e);
         }

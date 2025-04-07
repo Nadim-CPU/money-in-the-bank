@@ -13,7 +13,7 @@ class CustomerService {
     static async createCustomer(customer) {
 
         try {
-            CustomerRepository.createCustomer(customer);
+            return await CustomerRepository.createCustomer(customer);
         } catch (e) {
             throw new Error(e);
         }

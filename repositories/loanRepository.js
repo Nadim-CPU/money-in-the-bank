@@ -26,10 +26,10 @@ class LoanRepository {
     static async updateLoan(loan) {
 
         const [updatedLoan] = await Loan.update({
-            loanAmount: loan.amount,
-            loanInterest: loan.interest,
             loanEndDate: loan.endDate,
             loanStatus: loan.status
+        }, {
+            where: { loanID: loan.id }
         });
 
         return updatedLoan;
