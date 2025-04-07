@@ -9,7 +9,7 @@ const AdminRepository = require("../repositories/adminRepository");
 */
 
 
-class AdminRepository {
+class AdminService {
 
 
     static async createAdmin(admin) {

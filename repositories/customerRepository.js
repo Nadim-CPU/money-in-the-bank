@@ -39,24 +39,24 @@ class CustomerRepository {
         return updatedCustomer;
     }
 
-    static async closeCustomer(customer) {
+    static async closeCustomer(id, dateClosed) {
 
         const [closedCustomer] = await Customer.update({
-            customerDateClosed: customer.dateClosed
+            customerDateClosed: dateClosed
         }, {
-            where: { customerID: customer.id }
+            where: { customerID: id }
         });
 
         return closedCustomer;
     }
 
 
-    static async reopenCustomer(customer) {
+    static async reopenCustomer(id) {
 
         const [openedCustomer] = await Customer.update({
             customerDateClosed: null
         }, {
-            where: { customerID: customer.id }
+            where: { customerID: id }
         });
 
         return openedCustomer;
@@ -81,4 +81,4 @@ class CustomerRepository {
 }
 
 
-module.exports = LoanRepository
+module.exports = CustomerRepository;

@@ -80,6 +80,13 @@ class UserRepository {
         return await User.findByPk(id);
     }
 
+    /**
+     * Gets Every User In The DB
+     * @returns allUsers
+     */
+    static async readUsers() {
+        return await User.findAll();
+    }
 
     /**
      * Deletes A User Using Their ID

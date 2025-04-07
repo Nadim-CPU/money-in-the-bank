@@ -72,6 +72,7 @@ class UserController {
             }
 
             const result = await UserService.changeUserAddress({ address });
+            res.status(200).json(result);
         } catch (e) {
             console.error(e.message);
             res.status(500).json({message: "Internal Server Error", error: e.message});
@@ -81,7 +82,7 @@ class UserController {
     static async deleteUser(req, res) {
         
         try {
-            const { id } = req.body;
+            const { id } = req.params;
             const result = await UserService.deleteUser(id);
             res.status(200).json(result);
         } catch (e) {
@@ -89,6 +90,30 @@ class UserController {
             res.status(500).json({message: "Internal Server Error", error: e.message});
         }
     }
+
+    static async getUsers(req, res){
+
+        try {
+            const result = await UserService.readUsers();
+            res.status(200).json(result);
+        } catch (e) {
+            console.error(e.message);
+            res.status(500).json({message: 'Internal Server error', Error: e.message});
+        }
+    }
+
+    static async getUser(req, res){
+
+        try {
+            const {id} = req.params;
+            const result = await UserService.readUser(id);
+            res.status(200).json(result);
+        } catch (e) {
+            console.error(e.message);
+            res.status(500).json({message: 'Internal Server error', Error: e.message});
+        }
+    }
+
 
     static async login(req, res) {
 
@@ -99,7 +124,7 @@ class UserController {
             res.status(200).json({message: "Authenticated", user})
         } catch (e) {
             console.error(e.message);
-            res.status(500).json({message: "Internal Server Error", error: e.message});
+            res.status(500).json({message: "Error Logging In! Are you sure you entered the right credentials?", error: e.message});
         }
     }
 }
