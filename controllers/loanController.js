@@ -21,16 +21,33 @@ class LoanController {
         }
     }
 
-    static async updateLoan(req, res) {
+    static async updateLoanEndDate(req, res) {
 
         try {
 
             const { id } = req.params;
-            const { endDate, status } = req.body;
+            const { endDate } = req.body;
 
-            const loan = { id, endDate, status};
+            const loan = { id, endDate};
 
-            const result = await LoanService.updateLoan(loan);
+            const result = await LoanService.updateLoanEndDate(loan);
+            res.status(200).json(result);
+        } catch (e) {
+            console.error(e.message);
+            res.status(500).json({message: "Internal Server Error", error: e.message});
+        }
+    }
+
+    static async updateLoanStatus(req, res) {
+
+        try {
+
+            const { id } = req.params;
+            const { status } = req.body;
+
+            const loan = { id,  status };
+
+            const result = await LoanService.updateLoanStatus(loan);
             res.status(200).json(result);
         } catch (e) {
             console.error(e.message);

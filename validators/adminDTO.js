@@ -1,7 +1,7 @@
 const {body, param, validationResult} = require('express-validator');
 
 
-validateAdmin = [
+const validateAdmin = [
 
     body('adminNumber')
         .isInt()

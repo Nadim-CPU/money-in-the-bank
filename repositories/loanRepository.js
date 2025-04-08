@@ -9,12 +9,12 @@ const Loan = require("../models/loanModel");
 class LoanRepository {
 
 
-    static async createLoan(loan) {
+    static async createLoan(loan, startDate) {
 
         const createdLoan = await Loan.create({
             loanAmount: loan.amount,
             loanInterest: loan.interest,
-            loanStartDate: loan.startDate,
+            loanStartDate: startDate,
             loanEndDate: loan.endDate,
             loanStatus: loan.status,
             customerID: loan.customerID
@@ -23,11 +23,25 @@ class LoanRepository {
         return createdLoan;
     }
 
-    static async updateLoan(loan) {
+    static async deductLoanAmount(id, amount) {
+
+        const loan = await this.getLoan(id);
+
+        loan.amount -= amount;
 
         const [updatedLoan] = await Loan.update({
-            loanEndDate: loan.endDate,
-            loanStatus: loan.status
+            loanAmount: loan.amount
+        }, {
+            where: {loanID: id}
+        });
+
+        return updatedLoan;
+    }
+
+    static async updateLoanEndDate(loan) {
+
+        const [updatedLoan] = await Loan.update({
+            loanEndDate: loan.endDate
         }, {
             where: { loanID: loan.id }
         });
@@ -35,6 +49,16 @@ class LoanRepository {
         return updatedLoan;
     }
 
+    static async updateLoanStatus(loan) {
+
+        const [updatedLoan] = await Loan.update({
+            loanStatus: loan.status
+        }, {
+            where: { loanID: loan.id }
+        });
+
+        return updatedLoan;
+    }
 
     static async deleteLoan(id) {
 

@@ -36,7 +36,7 @@ class CustomerController {
         }
     }
 
-    static async DeductFromBalance(req, res){
+    static async deductFromBalance(req, res){
 
         try {
             const { id } = req.params;

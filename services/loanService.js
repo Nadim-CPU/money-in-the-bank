@@ -11,19 +11,37 @@ class LoanService {
 
     static async createLoan(loan) {
 
+        const startDate = new Date();
         try {
-            return await LoanRepository.createLoan(loan);
+            return await LoanRepository.createLoan(loan, startDate);
         } catch (e) {
             throw new Error(e);
         }
 
     }
 
+    static async deductLoanAmount(id, amount) {
+        try {
 
-    static async updateLoan(loan) {
+            return await LoanRepository.deductLoanAmount(id, amount); 
+        } catch (e) {
+            throw new Error(e);
+        }   
+}
+
+    static async updateLoanEndDate(loan) {
 
         try {
-            return await LoanRepository.updateLoan(loan);
+            return await LoanRepository.updateLoanEndDate(loan);
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
+
+    static async updateLoanStatus(loan) {
+
+        try {
+            return await LoanRepository.updateLoanStatus(loan);
         } catch (e) {
             throw new Error(e);
         }

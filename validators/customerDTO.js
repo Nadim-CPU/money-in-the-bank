@@ -1,7 +1,7 @@
 const {body, param, validationResult} = require('express-validator');
 
 
-validateCustomer = [
+const validateCustomer = [
 
     body('balance')
         .isDecimal()
@@ -36,7 +36,7 @@ validateCustomer = [
     
 ];
 
-const validationCustomerID = [
+const validationCustomerId = [
     param('id').isInt().withMessage('ID must be an integer'),
     (req, res, next) =>{
         const errors = validationResult(req);
@@ -50,5 +50,5 @@ const validationCustomerID = [
 
 module.exports = {
     validateCustomer,
-    validationCustomerID
+    validationCustomerId
 }

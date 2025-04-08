@@ -17,6 +17,7 @@ class CustomerRepository {
         const createdCustomer = await Customer.create({
             customerBalance: customer.balance,
             customerDateOpened: customer.dateOpened,
+            customerDateClosed: NULL,
             customerTaxID: customer.taxID,
             userID: customer.userID
         });
@@ -40,7 +41,8 @@ class CustomerRepository {
     }
 
     static async closeCustomer(id, dateClosed) {
-
+        const customer = this.getCustomer(id);
+        if (customer.dateClosed != NULL) throw new Error("Customer is already closed.");
         const [closedCustomer] = await Customer.update({
             customerDateClosed: dateClosed
         }, {
@@ -52,7 +54,8 @@ class CustomerRepository {
 
 
     static async reopenCustomer(id) {
-
+        const customer = this.getCustomer(id);
+        if (customer.dateClosed == NULL) throw new Error("Customer is already opened.");
         const [openedCustomer] = await Customer.update({
             customerDateClosed: null
         }, {
