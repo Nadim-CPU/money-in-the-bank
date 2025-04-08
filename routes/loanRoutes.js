@@ -4,7 +4,7 @@ const { validateLoan, validationLoanId } = require("../validators/loanDTO");
 const { validationCustomerId } = require("../validators/customerDTO");
 
 
-const router = express.router();
+const router = express.Router();
 
 router.post('/', validateLoan, LoanController.createLoan);
 router.put('/date/:id', validateLoan ,validationLoanId, LoanController.updateLoanEndDate);

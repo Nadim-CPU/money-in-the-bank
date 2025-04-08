@@ -76,7 +76,7 @@ class UserRepository {
      * @param {int} id 
      * @returns 
      */
-    static async readUser(id) {
+    static async getUser(id) {
         return await User.findByPk(id);
     }
 
@@ -84,7 +84,7 @@ class UserRepository {
      * Gets Every User In The DB
      * @returns allUsers
      */
-    static async readUsers() {
+    static async getUsers() {
         return await User.findAll();
     }
 

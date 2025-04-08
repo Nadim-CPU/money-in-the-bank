@@ -92,9 +92,9 @@ class UserController {
     }
 
     static async getUsers(req, res){
-
+        console.log('Im being runned!');
         try {
-            const result = await UserService.readUsers();
+            const result = await UserService.getUsers();
             res.status(200).json(result);
         } catch (e) {
             console.error(e.message);

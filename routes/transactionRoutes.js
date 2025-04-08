@@ -3,7 +3,7 @@ const TransactionController = require("../controllers/transactionController");
 const { validateTransaction, validationTransactionId } = require("../validators/transactionDTO");
 const { validationCustomerId } = require("../validators/customerDTO");
 
-const router = router.express();
+const router = express.Router();
 
 router.post('/', validateTransaction, TransactionController.createTransaction);
 router.get('/:id', validationTransactionId, TransactionController.getTransaction);

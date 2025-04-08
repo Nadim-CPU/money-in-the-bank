@@ -25,14 +25,15 @@ const validateUser = [
         .isStrongPassword()
         .withMessage('Password must be STRONG.'),
     body('phoneNbr')
-        .isMobilePhone()
+        .isMobilePhone('ar-LB')
         .withMessage('Phone number must be VALID.')
         .notEmpty()
         .withMessage('Phone number cannot be EMPTY.'),
     body('dob')
         .isDate()
         .withMessage('DOB must be VALID.')
-        .notEmpty('DOB cannot be EMPTY.'),
+        .notEmpty()
+        .withMessage('DOB cannot be EMPTY.'),
     body('address')
         .isString()
         .withMessage('Address must be STRING')

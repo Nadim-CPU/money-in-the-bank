@@ -4,8 +4,10 @@ const { validateLoanPayment, validationLoanPaymentId } = require("../validators/
 const { validationLoanId } = require("../validators/loanDTO");
 
 
-const router = express.router();
+const router = express.Router();
 
 router.post('/', validateLoanPayment, LoanPaymentController.createLoanPayment);
 router.get('/:id', validationLoanPaymentId, LoanPaymentController.getLoanPayment);
 router.get('/loan/:id', validationLoanId, LoanPaymentController.getAllLoanPaymentsOfLoan);
+
+module.exports = router;

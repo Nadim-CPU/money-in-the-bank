@@ -1,7 +1,7 @@
 
 // LIBRARIES
 
-const express = reuqire("express");
+const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -20,7 +20,7 @@ const loanpaymentRoutes = require("./routes/loanpaymentRoutes");
 
 const app = express();
 
-require(".env").config();
+require("dotenv").config();
 
 app.use(cors());
 app.use(express.json());

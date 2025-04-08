@@ -3,7 +3,7 @@ const AdminController = require("../controllers/adminController");
 const { validateAdmin, validationAdminId } = require("../validators/adminDTO");
 
 
-const router = express.router();
+const router = express.Router();
 
 router.post('/', validateAdmin, AdminController.createAdmin);
 router.put('/number/:id', validateAdmin, validationAdminId, AdminController.updateAdmin);

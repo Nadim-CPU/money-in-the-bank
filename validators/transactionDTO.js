@@ -2,7 +2,7 @@
 const { body, param, validationResult } = require('express-validator');
 
 
-validateTransaction = [
+const validateTransaction = [
 
     body('type')
         .isString()
@@ -26,7 +26,7 @@ validateTransaction = [
         .withMessage('Transaction ID cannot be EMPTY.')
 ]
 
-const validationTransactionID = [
+const validationTransactionId = [
     param('id').isInt().withMessage('ID must be an integer'),
     (req, res, next) =>{
         const errors = validationResult(req);
@@ -40,5 +40,5 @@ const validationTransactionID = [
 
 module.exports = {
     validateTransaction,
-    validationTransactionID
+    validationTransactionId
 }

@@ -3,7 +3,7 @@ const UserController = require("../controllers/userController");
 const { validateUser, validationUserID } = require("../validators/userDTO");
 
 
-const router = express.router();
+const router = express.Router();
 
 router.post('/',validateUser, UserController.createUser);
 router.get('/', UserController.getUsers);

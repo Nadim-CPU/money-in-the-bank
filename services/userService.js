@@ -47,6 +47,23 @@ class UserService {
         }
     }
 
+    static async getUsers() {
+        
+        try {
+            return await UserRepository.getUsers();
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
+
+    static async getUser(id) {
+        
+        try {
+            return await UserRepository.getUser(id);
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
     static async readUser(id) {
         
         try {

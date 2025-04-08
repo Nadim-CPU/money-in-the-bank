@@ -3,7 +3,7 @@ const CustomerController = require("../controllers/customerController");
 const { validateCustomer, validationCustomerId } = require("../validators/customerDTO");
 
 
-const router = express.router();
+const router = express.Router();
 
 router.post('/', validateCustomer, CustomerController.createCustomer);
 router.put('/add/:id', validationCustomerId, CustomerController.addToBalance);
