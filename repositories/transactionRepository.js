@@ -12,7 +12,11 @@ const Transaction = require("../models/transactionModel");
 
 class TransactionRepository {
 
-
+    /**
+     * Creates A Transaction
+     * @param {Transaction} transaction 
+     * @returns 
+     */
     static async createTransaction(transaction) {
 
         const createdTransaction = await Transaction.create({
@@ -26,13 +30,21 @@ class TransactionRepository {
 
     }
 
-
+    /**
+     * Gets Transaction By Their ID
+     * @param {int} id 
+     * @returns 
+     */
     static async getTransaction(id) {
 
         return await Transaction.findAll({where: { transactionID: id}});
     }
 
-
+    /**
+     * Gets All Transaction Of A Customer
+     * @param {int} id 
+     * @returns allTransactionsOfCustomer
+     */
     static async getAllTransactionsOfCustomer(id) {
 
         return await Transaction.findAll({where: {customerID: id}});

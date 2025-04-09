@@ -1,6 +1,10 @@
 const User = require('../models/userModel')
 const UserService = require('../services/userService')
 
+/* ----------------------------------------------------------------------------------------------
+*  |                                         USER CONTROLLER                                    |
+*  ----------------------------------------------------------------------------------------------
+*/
 
 class UserController {
 

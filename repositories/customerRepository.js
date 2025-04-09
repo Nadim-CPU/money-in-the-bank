@@ -11,7 +11,11 @@ const LoanRepository = require("./loanRepository");
 
 class CustomerRepository {
 
-
+    /**
+     * Creates Customer
+     * @param {Customer} customer 
+     * @returns createdCustomer
+     */
     static async createCustomer(customer) {
 
         const createdCustomer = await Customer.create({
@@ -25,6 +29,12 @@ class CustomerRepository {
         return createdCustomer;
     }
 
+    /**
+     * Updates Customer Balance
+     * @param {int} id 
+     * @param {Float} amount 
+     * @returns updatedCustomer
+     */
     static async updateCustomerBalance(id, amount) {
 
         const customer = await this.getCustomer(id);
@@ -46,9 +56,17 @@ class CustomerRepository {
         return updatedCustomer;
     }
 
+    /**
+     * Closed Customer
+     * @param {int} id 
+     * @param {Date} dateClosed 
+     * @returns closedCustomer
+     */
     static async closeCustomer(id, dateClosed) {
 
+        // Getting Customer To Test
         const customer = this.getCustomer(id);
+
         // Checking If Customer Is Already Closed!
         if (customer.dateClosed != null) throw new Error("Customer is already closed.");
 
@@ -61,10 +79,19 @@ class CustomerRepository {
         return closedCustomer;
     }
 
-
+    /**
+     * Reopens Customer If Closed
+     * @param {int} id 
+     * @returns reopenedCustomer
+     */
     static async reopenCustomer(id) {
+        
+        // Getting Customer To Test
         const customer = this.getCustomer(id);
+
+        // Checking if Customer is Already Opened
         if (customer.dateClosed == null) throw new Error("Customer is already opened.");
+
         const [openedCustomer] = await Customer.update({
             customerDateClosed: null
         }, {
@@ -74,15 +101,29 @@ class CustomerRepository {
         return openedCustomer;
     }
 
+
+    /**
+     * Gets Customer By ID
+     * @param {int} id 
+     * @returns customer
+     */
     static async getCustomer(id) {
         return await Customer.findByPk(id);
     }
 
+    /**
+     * Gets All Customers
+     * @returns allCustomers
+     */
     static async getCustomers() {
         return await Customer.findAll();
     }
 
-
+    /**
+     * Deletes Customer
+     * @param {int} id 
+     * @returns deletedCustomer
+     */
     static async deleteCustomer(id) {
         return await Customer.destroy({
             where: { customerID: id}

@@ -1,7 +1,10 @@
 
 const LoanPaymentService = require("../services/loanpaymentService");
 
-
+/* ----------------------------------------------------------------------------------------------
+*  |                                 LOAN PAYMENT CONTROLLER                                    |
+*  ----------------------------------------------------------------------------------------------
+*/
 
 
 class LoanPaymentController {

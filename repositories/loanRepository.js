@@ -8,7 +8,12 @@ const Loan = require("../models/loanModel");
 
 class LoanRepository {
 
-
+    /**
+     * Creates A Loan
+     * @param {Loan} loan 
+     * @param {Date} startDate 
+     * @returns createdLoan
+     */
     static async createLoan(loan, startDate) {
 
         const createdLoan = await Loan.create({
@@ -23,8 +28,15 @@ class LoanRepository {
         return createdLoan;
     }
 
+    /**
+     * Deducts A Certain Amount From A Loan
+     * @param {int} id 
+     * @param {Float} amount 
+     * @returns 
+     */
     static async deductLoanAmount(id, amount) {
 
+        // Checking Loan
         const loan = await this.getLoan(id);
 
        
@@ -45,6 +57,11 @@ class LoanRepository {
         return updatedLoan;
     }
 
+    /**
+     * Updates End Date Of A Loan
+     * @param {Loan} loan 
+     * @returns updatedLoan
+     */
     static async updateLoanEndDate(loan) {
 
         const [updatedLoan] = await Loan.update({
@@ -56,6 +73,11 @@ class LoanRepository {
         return updatedLoan;
     }
 
+    /**
+     * Updates Status Of A Loan
+     * @param {Loan} loan 
+     * @returns updatedLoan
+     */
     static async updateLoanStatus(loan) {
 
         const [updatedLoan] = await Loan.update({
@@ -67,6 +89,11 @@ class LoanRepository {
         return updatedLoan;
     }
 
+    /**
+     * Deletes A Loan By Their ID
+     * @param {int} id 
+     * @returns deletedLoan
+     */
     static async deleteLoan(id) {
 
         return await Loan.destroy({
@@ -74,10 +101,20 @@ class LoanRepository {
         });
     }
 
+    /**
+     * Gets Loan By Their ID
+     * @param {int} id 
+     * @returns loan
+     */
     static async getLoan(id) {
         return await Loan.findByPk(id);
     }
 
+    /**
+     * Gets All Loans Of A Customer
+     * @param {int} id 
+     * @returns allLoansOfCustomer
+     */
     static async getLoansOfCustomer(id) {
         return Loan.findAll({ where: {customerID: id}});
     }
