@@ -64,10 +64,10 @@ class UserService {
             throw new Error(e);
         }
     }
-    static async readUser(id) {
+    static async getUser(id) {
         
         try {
-           return await UserRepository.readUser(id);
+           return await UserRepository.getUser(id);
         } catch(e) {
             throw new Error(e);
         }

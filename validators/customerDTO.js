@@ -13,9 +13,6 @@ const validateCustomer = [
         .withMessage('Date opened must be DATE.')
         .notEmpty()
         .withMessage('Date opened cannot be EMPTY.'),
-    body('dateClosed')
-        .isDate()
-        .withMessage('Date opened must be DATE.'),
     body('taxID')
         .matches(/^[1-9]{2}-[1-9]{7}$/)
         .withMessage('Tax ID does not follow the FORMAT.')

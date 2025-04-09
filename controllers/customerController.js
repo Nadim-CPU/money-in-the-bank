@@ -27,7 +27,7 @@ class CustomerController {
             const { id } = req.params;
             const { amount } = req.body;
 
-            const result = await CustomerService.addToBalance({ id, amount });
+            const result = await CustomerService.addToBalance(id, amount);
             res.status(200).json(result);
 
         } catch (e) {
@@ -42,7 +42,7 @@ class CustomerController {
             const { id } = req.params;
             const { amount } = req.body;
 
-            const result = await CustomerService.deductFromBalance({ id, amount });
+            const result = await CustomerService.deductFromBalance(id, amount);
             res.status(200).json(result);
 
         } catch (e) {

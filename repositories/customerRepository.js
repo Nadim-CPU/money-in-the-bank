@@ -17,7 +17,7 @@ class CustomerRepository {
         const createdCustomer = await Customer.create({
             customerBalance: customer.balance,
             customerDateOpened: customer.dateOpened,
-            customerDateClosed: NULL,
+            customerDateClosed: null,
             customerTaxID: customer.taxID,
             userID: customer.userID
         });
@@ -28,11 +28,14 @@ class CustomerRepository {
     static async updateCustomerBalance(id, amount) {
 
         const customer = await this.getCustomer(id);
-
-        customer.balance += amount; // ADDS/DEDUCTS THE BALANCE, EVEN THOUGH IT SEEMS TO BE ADDING TO IT
-
+        if (customer.dateClosed != null) throw new Error("Customer is already closed.");
+        console.log("customerBalance:", customer.customerBalance);
+        console.log("amount:", amount);
+        // PARSING TO FLOAT TO ENSURE IT FITS IN DECIMAL FORMAT
+        customer.customerBalance = parseFloat(customer.customerBalance) + parseFloat(amount); // ADDS/DEDUCTS THE BALANCE, EVEN THOUGH IT SEEMS TO BE ADDING TO IT
+        console.log("customerBalance:", customer.customerBalance);
         const [updatedCustomer] = await Customer.update({
-            customerBalance: customer.balance
+            customerBalance: customer.customerBalance
         }, {
             where: {customerID: id}
         });
@@ -42,7 +45,7 @@ class CustomerRepository {
 
     static async closeCustomer(id, dateClosed) {
         const customer = this.getCustomer(id);
-        if (customer.dateClosed != NULL) throw new Error("Customer is already closed.");
+        if (customer.dateClosed != null) throw new Error("Customer is already closed.");
         const [closedCustomer] = await Customer.update({
             customerDateClosed: dateClosed
         }, {
@@ -55,7 +58,7 @@ class CustomerRepository {
 
     static async reopenCustomer(id) {
         const customer = this.getCustomer(id);
-        if (customer.dateClosed == NULL) throw new Error("Customer is already opened.");
+        if (customer.dateClosed == null) throw new Error("Customer is already opened.");
         const [openedCustomer] = await Customer.update({
             customerDateClosed: null
         }, {

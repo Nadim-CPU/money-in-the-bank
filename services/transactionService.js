@@ -1,5 +1,5 @@
 
-
+const CustomerService = require("../services/customerService");
 const TransactionRepository = require("../repositories/transactionRepository");
 
 
@@ -39,7 +39,40 @@ class TransactionService {
             throw new Error(e);
         }
     }
+    
+    static async depositTransaction(transaction) {
 
+        // First Add To Balance 
+        try {
+            await CustomerService.addToBalance(transaction.customerId, transaction.amount);
+        } catch (e) {
+            throw new Error(e);
+        }
+
+        // Then Create Transaction
+        try {
+            return await TransactionRepository.createTransaction(transaction);
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
+
+    static async withdrawTransaction(transaction) {
+
+        // First Deduct From Balance 
+        try {
+            await CustomerService.deductFromBalance(transaction.customerId, transaction.amount);
+        } catch (e) {
+            throw new Error(e);
+        }
+
+        // Then Create Transaction
+        try {
+            return await TransactionRepository.createTransaction(transaction);
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
 }
 
 

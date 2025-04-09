@@ -33,14 +33,14 @@ Loan.init(
             type: DataTypes.DATE,
             allowNull: false,
             get() {
-                return moment(this.getDataValue("loanStartDate").format("YYYY-MM-DD"));
+                return moment(this.getDataValue("loanStartDate")).format("YYYY-MM-DD");
             }
         },
         loanEndDate: {
             type: DataTypes.DATE,
             allowNull: false,
             get() {
-                return moment(this.getDataValue("loanEndDate").format("YYYY-MM-DD"))
+                return moment(this.getDataValue("loanEndDate")).format("YYYY-MM-DD");
             }
         },
         loanStatus: {

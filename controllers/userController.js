@@ -24,7 +24,7 @@ class UserController {
             const { id } = req.params;
             const { password } = req.body;
 
-            const user = await UserService.readUser(id);
+            const user = await UserService.getUser(id);
             // Check if such user exists
             if (!user) {
                 return res.status(404).json({ message: "User not found"});
@@ -44,7 +44,7 @@ class UserController {
             const { id } = req.params;
             const { phoneNbr } = req.body;
 
-            const user = await UserService.readUser(id);
+            const user = await UserService.getUser(id);
 
             if (!user) {
                 return res.status(404).json({ message: "User not found"})
@@ -65,13 +65,13 @@ class UserController {
             const { address } = req.body;
 
 
-            const user = await UserService.readUser(id);
+            const user = await UserService.getUser(id);
 
             if (!user) {
                 return res.status(404).json({ message: "User not found"});
             }
 
-            const result = await UserService.changeUserAddress({ address });
+            const result = await UserService.changeUserAddress({ id, address });
             res.status(200).json(result);
         } catch (e) {
             console.error(e.message);
@@ -106,7 +106,7 @@ class UserController {
 
         try {
             const {id} = req.params;
-            const result = await UserService.readUser(id);
+            const result = await UserService.getUser(id);
             res.status(200).json(result);
         } catch (e) {
             console.error(e.message);

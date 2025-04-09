@@ -17,7 +17,7 @@ class AdminRepository {
     static async createAdmin(admin) {
 
         const createdAdmin = await Admin.create({
-            adminNumber: admin.number,
+            adminNumber: admin.adminNumber,
             userID: admin.userID
         });
         return createdAdmin;

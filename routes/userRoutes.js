@@ -1,6 +1,6 @@
 const express = require('express');
 const UserController = require("../controllers/userController");
-const { validateUser, validationUserID } = require("../validators/userDTO");
+const { validateUser, validationUserID, validateUserPhone, validateUserPassword, validateUserAddress } = require("../validators/userDTO");
 
 
 const router = express.Router();
@@ -10,8 +10,8 @@ router.get('/', UserController.getUsers);
 router.get('/:id', UserController.getUser);
 router.post('/login', UserController.login);
 router.delete('/:id', validationUserID, UserController.deleteUser);
-router.put('/phone/:id', validateUser, validationUserID, UserController.changeUserPhone);
-router.put('/address/:id', validateUser, validationUserID, UserController.changeUserAddress);
-router.put('/password/:id', validateUser, validationUserID, UserController.changeUserPassword);
+router.put('/phone/:id', validateUserPhone, validationUserID, UserController.changeUserPhone);
+router.put('/address/:id', validateUserAddress, validationUserID, UserController.changeUserAddress);
+router.put('/password/:id', validateUserPassword, validationUserID, UserController.changeUserPassword);
 
 module.exports = router;

@@ -29,15 +29,12 @@ Customer.init(
             type: DataTypes.DATE,
             allowNull: false,
             get() {
-                return moment(this.getDataValue("customerDateOpened").format("YYYY-MM-DD"));
+                return moment(this.getDataValue('customerDateOpened')).format('YYYY-MM-DD');
             }
         },
         customerDateClosed: {
             type: DataTypes.DATE,
             allowNull: true,
-            get() {
-                return moment(this.getDataValue("customerDateClosed").format("YYYY-MM-DD"));
-            }
         },
         customerTaxID: {
             type: DataTypes.STRING,

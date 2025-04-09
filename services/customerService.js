@@ -22,7 +22,7 @@ class CustomerService {
 
     static async addToBalance(id, amount) {
         try {
-            return await CustomerRepository.updateBalance(id, amount);
+            return await CustomerRepository.updateCustomerBalance(id, amount);
         } catch (e) {
             throw new Error(e);
         }
@@ -35,16 +35,16 @@ class CustomerService {
             /**
              * ENSURE CUSTOMER HAS ENOUGH BALANCE TO DEDUCT FROM HIS ACCOUNT
              */
-            const customer = CustomerRepository.getCustomer(id);
+            const customer = await CustomerRepository.getCustomer(id);
             
-            if (customer.balance < amount) {
+            if (customer.customerBalance < amount) {
                 throw new Error("Insufficient balance");
             }
 
             /**
              * WE CAN INCLUDE A MINUS TO REMOVE AN AMOUNT RATHER THAN FORCING THE PARAMETER/USER TO DO SO
              */
-            return await CustomerRepository.updateBalance(id, -amount); 
+            return await CustomerRepository.updateCustomerBalance(id, -amount); 
         } catch (e) {
             throw new Error(e);
         }

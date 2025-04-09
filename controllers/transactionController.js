@@ -50,6 +50,46 @@ class TransactionController {
             res.status(500).json({message: "Internal Server Error", error: e.message});
         }
     }
+
+    /**
+     * WITHDRAW
+     * &
+     * DEPOSIT FUNCTIONS 
+     */
+    static async depositTransaction(req, res) {
+
+        try {
+            
+            const { customerId } = req.params;
+            const { amount, date } = req.body;
+            const type = "DEPOSIT";
+            const transaction = { type, amount, date, customerId };
+
+            const result = await TransactionService.depositTransaction(transaction);
+            res.status(200).json(result);
+        } catch (e) {
+            console.error(e.message);
+            res.status(500).json({message: "Internal Server Error", error: e.message});
+        }
+    }
+
+    static async withdrawTransaction(req, res){
+
+        try {
+            
+            const { customerId } = req.params;
+            const { amount, date } = req.body;
+            const type = "DEPOSIT";
+            const transaction = { type, amount, date, customerId };
+
+            const result = await TransactionService.withdrawTransaction(transaction);
+            res.status(200).json(result);
+        } catch (e) {
+            console.error(e.message);
+            res.status(500).json({message: "Internal Server Error", error: e.message});
+        }
+        
+    }
 }
 
 

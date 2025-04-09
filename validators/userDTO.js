@@ -49,6 +49,50 @@ const validateUser = [
     
 ];
 
+const validateUserPassword = [
+    body('password')
+        .isString()
+        .withMessage('Password must be STRING.')
+        .notEmpty()
+        .withMessage('Password cannot be EMPTY.'),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({errors: errors.array()});
+        }
+        next();
+    }
+];
+
+const validateUserPhone = [
+    body('phoneNbr')
+        .isMobilePhone('ar-LB')
+        .withMessage('Phone number must be VALID.')
+        .notEmpty()
+        .withMessage('Phone number cannot be EMPTY.'),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+            return res.status(400).json({errors: errors.array()});
+        }
+        next();
+    }
+];
+
+const validateUserAddress = [
+    body('address')
+        .isString()
+        .withMessage('Address must be STRING')
+        .notEmpty()
+        .withMessage('Address cannot be EMPTY.'),
+    (req, res, next) => {
+        const errors = validationResult(req);
+        if(!errors.isEmpty()){
+                return res.status(400).json({errors: errors.array()});
+        }
+        next();
+    }
+];
 
 const validationUserID = [
     param('id').isInt().withMessage('ID must be an integer'),
@@ -64,5 +108,8 @@ const validationUserID = [
 
 module.exports = {
     validateUser,
+    validateUserPhone,
+    validateUserPassword,
+    validateUserAddress,
     validationUserID
 }
