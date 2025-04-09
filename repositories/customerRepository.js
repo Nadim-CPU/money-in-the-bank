@@ -28,12 +28,15 @@ class CustomerRepository {
     static async updateCustomerBalance(id, amount) {
 
         const customer = await this.getCustomer(id);
-        if (customer.dateClosed != null) throw new Error("Customer is already closed.");
-        console.log("customerBalance:", customer.customerBalance);
-        console.log("amount:", amount);
+        // Checking If Customer Is Closed!
+        if (customer.dateClosed != null) { 
+            throw new Error("Customer is already closed.");
+        }
+
+
         // PARSING TO FLOAT TO ENSURE IT FITS IN DECIMAL FORMAT
         customer.customerBalance = parseFloat(customer.customerBalance) + parseFloat(amount); // ADDS/DEDUCTS THE BALANCE, EVEN THOUGH IT SEEMS TO BE ADDING TO IT
-        console.log("customerBalance:", customer.customerBalance);
+
         const [updatedCustomer] = await Customer.update({
             customerBalance: customer.customerBalance
         }, {
@@ -44,8 +47,11 @@ class CustomerRepository {
     }
 
     static async closeCustomer(id, dateClosed) {
+
         const customer = this.getCustomer(id);
+        // Checking If Customer Is Already Closed!
         if (customer.dateClosed != null) throw new Error("Customer is already closed.");
+
         const [closedCustomer] = await Customer.update({
             customerDateClosed: dateClosed
         }, {

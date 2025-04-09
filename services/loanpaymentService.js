@@ -13,25 +13,26 @@ class LoanPaymentService {
 
     static async createLoanPayment(loanPayment) {
 
-        // Calling the loan to get the customerID and deduct from it
-        const loan = await LoanService.getLoan(loanPayment.loanID);
-
-        // Catcing Any Error From This
+        // It's a Mess But It Works
         try {
-            await CustomerService.deductFromBalance(loan.customerID, loanPayment.amount);
-            await LoanService.deductLoanAmount(loanPayment.loanID, loanPayment.amount);
-        } catch (e) {
-            throw new Error(e);
-        }
-
-        try {
-            await TransactionService.createTransaction({
-                transactionType: "LOAN PAYENT",
-                transactionAmount: loanPayment.amount,
-                transactionDate: loanPayment.datePaid,
+            const loan = await LoanService.getLoan(loanPayment.loanID);
+            await CustomerService.deductFromBalance(loan.customerID, loanPayment.paidAmount);
+            console.log("WORKS!")
+            await LoanService.deductLoanAmount(loanPayment.loanID, loanPayment.paidAmount);
+            console.log("ALSO WORKS!")
+            
+            console.log("TESTING TRANSACTION")
+            const transaction = await TransactionService.createTransaction({
+                type: "LOAN PAYENT",
+                amount: loanPayment.paidAmount,
+                date: loanPayment.datePaid,
                 customerID: loan.customerID
             });
-            return await LoanPaymentRepository.createLoanPayment(loanPayment);
+            console.log("TRANSACTION WORKS")
+
+            const transactionID = transaction.transactionID;
+
+            return await LoanPaymentRepository.createLoanPayment(loanPayment, transactionID);
         } catch (e) {
             throw new Error(e);
         }
@@ -45,10 +46,10 @@ class LoanPaymentService {
         }
     }
 
-    static async getAllLoanPaymentsOfLoan(loanId) {
+    static async getAllLoanPaymentsOfLoan(id) {
         
         try {
-            return await LoanPaymentRepository.getAllLoanPaymentsOfLoan(loanId);
+            return await LoanPaymentRepository.getAllLoanPaymentsOfLoan(id);
         } catch (e) {
             throw new Error(e);
         }

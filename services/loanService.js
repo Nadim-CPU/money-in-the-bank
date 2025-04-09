@@ -27,7 +27,7 @@ class LoanService {
         } catch (e) {
             throw new Error(e);
         }   
-}
+    }
 
     static async updateLoanEndDate(loan) {
 
@@ -65,10 +65,10 @@ class LoanService {
         }
     }
 
-    static async getLoansOfCustomer(customerId) {
+    static async getLoansOfCustomer(id) {
 
         try {
-            return await LoanRepository.getLoansOfCustomer(customerId);
+            return await LoanRepository.getLoansOfCustomer(id);
         } catch (e) {
             throw new Error(e);
         }

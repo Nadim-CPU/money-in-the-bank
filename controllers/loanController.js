@@ -68,6 +68,18 @@ class LoanController {
             res.status(500).json({message: "Internal Server Error", error: e.message});
         }
     }
+    static async deductLoanAmount(req, res) {
+
+        try {
+            const { id } = req.params;
+            const { amount } = req.body; 
+            const result = await LoanService.deductLoanAmount(id, amount);
+            res.status(200).json(result);
+        } catch (e) {
+            console.error(e.message);
+            res.status(500).json({message: "Internal Server Error", error: e.message});
+        }   
+    }
 
     static async getLoan(req, res) {
 
@@ -87,9 +99,9 @@ class LoanController {
 
         try {
 
-            const { customerId } = req.params;
+            const { id } = req.params;
 
-            const result = await LoanService.getLoansOfCustomer(customerId);
+            const result = await LoanService.getLoansOfCustomer(id);
             res.status(200).json(result);
         } catch (e) {
             console.error(e.message);

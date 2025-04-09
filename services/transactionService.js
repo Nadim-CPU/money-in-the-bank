@@ -31,10 +31,10 @@ class TransactionService {
         }
     }
 
-    static async getAllTransactionsOfCustomer(customerId) {
+    static async getAllTransactionsOfCustomer(id) {
         
         try {
-            return await TransactionRepository.getAllTransactionsOfCustomer(customerId);
+            return await TransactionRepository.getAllTransactionsOfCustomer(id);
         } catch (e) {
             throw new Error(e);
         }
@@ -44,12 +44,12 @@ class TransactionService {
 
         // First Add To Balance 
         try {
-            await CustomerService.addToBalance(transaction.customerId, transaction.amount);
+            await CustomerService.addToBalance(transaction.customerID, transaction.amount);
         } catch (e) {
             throw new Error(e);
         }
 
-        // Then Create Transaction
+        // Then Create Transacion
         try {
             return await TransactionRepository.createTransaction(transaction);
         } catch (e) {
@@ -61,7 +61,7 @@ class TransactionService {
 
         // First Deduct From Balance 
         try {
-            await CustomerService.deductFromBalance(transaction.customerId, transaction.amount);
+            await CustomerService.deductFromBalance(transaction.customerID, transaction.amount);
         } catch (e) {
             throw new Error(e);
         }

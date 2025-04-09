@@ -14,13 +14,13 @@ const LoanPayment = require("../models/loanpaymentModel");
 class LoanPaymentRepository {
 
 
-    static async createLoanPayment(loanPayment) {
+    static async createLoanPayment(loanPayment, transactionID) {
         
       const createdLoanPayment = await LoanPayment.create({
-            paidAmount: loanPayment.amount,
+            paidAmount: loanPayment.paidAmount,
             datePaid: loanPayment.datePaid,
             loanID: loanPayment.loanID,
-            transactionID: createdTransaction.transactionID
+            transactionID: transactionID
         });
 
         return createdLoanPayment;
@@ -32,9 +32,9 @@ class LoanPaymentRepository {
 
     }
 
-    static async getAllLoanPaymentsOfLoan(loanId) {
+    static async getAllLoanPaymentsOfLoan(id) {
         
-        return await LoanPayment.findAll({ where: {loanID: loanId}});
+        return await LoanPayment.findAll({ where: {loanID: id}});
 
     }
 

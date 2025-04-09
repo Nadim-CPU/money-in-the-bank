@@ -10,9 +10,9 @@ class LoanPaymentController {
 
         try {
 
-            const { amount, date, loanID } = req.body;
+            const { paidAmount, datePaid, loanID } = req.body;
 
-            const loanPayment = { amount, date, loanID };
+            const loanPayment = { paidAmount, datePaid, loanID };
 
             const result = LoanPaymentService.createLoanPayment(loanPayment);
 
@@ -29,7 +29,7 @@ class LoanPaymentController {
 
             const { id } = req.params;
 
-            const result = LoanPaymentService.getLoanPayment(id);
+            const result = await LoanPaymentService.getLoanPayment(id);
 
             res.status(200).json(result);
         } catch (e) {
@@ -42,9 +42,9 @@ class LoanPaymentController {
 
         try {
 
-            const { loanId } = req.params;
+            const { id } = req.params;
 
-            const result = LoanPaymentService.getAllLoanPaymentsOfLoan(loanId);
+            const result = await LoanPaymentService.getAllLoanPaymentsOfLoan(id);
 
             res.status(200).json(result);
         } catch (e) {

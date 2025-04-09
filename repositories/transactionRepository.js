@@ -33,9 +33,9 @@ class TransactionRepository {
     }
 
 
-    static async getAllTransactionsOfCustomer(customerId) {
+    static async getAllTransactionsOfCustomer(id) {
 
-        return await Transaction.findAll({where: {customerID: customerId}});
+        return await Transaction.findAll({where: {customerID: id}});
         
     }
 

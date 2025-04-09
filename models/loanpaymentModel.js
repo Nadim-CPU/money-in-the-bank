@@ -45,10 +45,11 @@ LoanPayment.init(
             references: {
                 model: "Transaction",
                 key: "transactionID"
-            }
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
+            },
+            onUpdate: 'CASCADE',
+            onDelete: 'CASCADE'
+        }
+  
     },
     {
         sequelize,

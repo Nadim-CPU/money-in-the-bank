@@ -27,10 +27,17 @@ class LoanRepository {
 
         const loan = await this.getLoan(id);
 
-        loan.amount -= amount;
+       
+        // Converting Amounts To Float
+        let parsedLoanAmount = parseFloat(loan.loanAmount);
+        let parsedAmount = parseFloat(amount);
 
+        // Beginning Arithmetic
+        parsedLoanAmount -= parsedAmount;
+
+        // Updating
         const [updatedLoan] = await Loan.update({
-            loanAmount: loan.amount
+            loanAmount: parsedLoanAmount
         }, {
             where: {loanID: id}
         });
@@ -68,11 +75,11 @@ class LoanRepository {
     }
 
     static async getLoan(id) {
-        return await Loan.findAll({where: {loanID: id}});
+        return await Loan.findByPk(id);
     }
 
-    static async getLoansOfCustomer(customerId) {
-        return Loan.findAll({ where: {customerID: customerId}});
+    static async getLoansOfCustomer(id) {
+        return Loan.findAll({ where: {customerID: id}});
     }
 }
 

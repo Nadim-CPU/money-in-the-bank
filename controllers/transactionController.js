@@ -41,9 +41,9 @@ class TransactionController {
 
         try {
 
-            const { customerId } = req.params;
+            const { id } = req.params;
 
-            const result = await TransactionService.getAllTransactionsOfCustomer(customerId);
+            const result = await TransactionService.getAllTransactionsOfCustomer(id);
             res.status(200).json(result);
         } catch (e) {
             console.error(e.message);
@@ -60,11 +60,12 @@ class TransactionController {
 
         try {
             
-            const { customerId } = req.params;
+            const { id } = req.params;
             const { amount, date } = req.body;
             const type = "DEPOSIT";
-            const transaction = { type, amount, date, customerId };
-
+            // Converting the id to customerID locally to prevent changing everything AGAIN
+            const customerID = id;
+            const transaction = { type, amount, date, customerID };
             const result = await TransactionService.depositTransaction(transaction);
             res.status(200).json(result);
         } catch (e) {
@@ -77,10 +78,12 @@ class TransactionController {
 
         try {
             
-            const { customerId } = req.params;
+            const { id } = req.params;
             const { amount, date } = req.body;
             const type = "DEPOSIT";
-            const transaction = { type, amount, date, customerId };
+            // Converting the id to customerID locally to prevent changing everything AGAIN
+            const customerID = id;
+            const transaction = { type, amount, date, customerID };
 
             const result = await TransactionService.withdrawTransaction(transaction);
             res.status(200).json(result);

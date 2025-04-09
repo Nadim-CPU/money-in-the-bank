@@ -77,7 +77,7 @@ class CustomerService {
 
         try {
 
-            return await CustomerRepository.closeCustomer(id);
+            return await CustomerRepository.deleteCustomer(id);
         } catch (e) {
             throw new Error(e);
         }

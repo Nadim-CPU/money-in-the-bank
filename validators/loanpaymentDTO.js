@@ -3,7 +3,7 @@ const { body, param, validationResult } = require('express-validator');
 
 const validateLoanPayment = [
 
-    body('paid')
+    body('paidAmount')
         .isDecimal()
         .withMessage('Paid Amount must be DECIMAL.')
         .notEmpty()
@@ -18,11 +18,6 @@ const validateLoanPayment = [
         .withMessage('Loan ID must be INT.')
         .notEmpty()
         .withMessage('Loan ID cannot be EMPTY.'),
-    body('transactionID')
-        .isInt()
-        .withMessage('Loan ID must be INT.')
-        .notEmpty()
-        .withMessage('Loan ID cannot EMPTY.'),
     (req, res, next) => {
         const errors = validationResult(req);
         if(!errors.isEmpty()){

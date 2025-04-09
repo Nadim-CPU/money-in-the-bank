@@ -1,7 +1,6 @@
 
 const { body, param, validationResult } = require('express-validator');
 
-
 const validateTransaction = [
 
     body('type')
@@ -19,7 +18,7 @@ const validateTransaction = [
         .withMessage('Date must be DATE.')
         .notEmpty()
         .withMessage('Date cannot be EMPTY.'),
-    body('transactionID')
+    body('customerID')
         .isInt()
         .withMessage('Transaction ID must be INT.')
         .notEmpty()

@@ -12,5 +12,6 @@ router.put('/close/:id', validationCustomerId, CustomerController.closeCustomer)
 router.put('/open/:id', validationCustomerId, CustomerController.reopenCustomer);
 router.get('/', CustomerController.getCustomers);
 router.get('/:id', validationCustomerId, CustomerController.getCustomer);
+router.delete('/:id', validationCustomerId, CustomerController.deleteCustomer);
 
 module.exports = router;
